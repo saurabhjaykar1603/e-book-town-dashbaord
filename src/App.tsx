@@ -1,13 +1,19 @@
-import { Button } from "./components/ui/button"
-
+import { Link } from "react-router-dom";
+import { Button } from "./components/ui/button";
 
 function App() {
-
   return (
     <>
-      <div>Welcome to E Book Town  <Button variant={"destructive"} className="mt-12">ShadCn</Button></div>
+      <div className="flex justify-center gap-5 flex-col w-96 mx-auto items-center h-screen">
+        <h1 className="text-[25px] text-center">Welcome to E Book Town </h1>{" "}
+        <Link to={"/auth/login"}>
+          <Button variant={"outline"} className="w-[300px]">
+            Get Started
+          </Button>
+        </Link>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
