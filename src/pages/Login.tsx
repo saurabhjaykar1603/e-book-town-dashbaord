@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -36,7 +37,15 @@ const LoginPage = () => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full">Sign in</Button>
+          <div className="flex justify-center flex-col items-center w-full">
+            <Button className="w-full">Sign Up</Button>
+            <div className="mt-4 text-center text-sm">
+              Dont have an account?{" "}
+              <Link to="/register" className="underline">
+                Sign up
+              </Link>
+            </div>
+          </div>
         </CardFooter>
       </Card>
     </section>
