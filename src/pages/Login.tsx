@@ -17,18 +17,20 @@ import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import { cn } from "../lib/utils";
 import { AxiosError } from "axios";
+import useTokenStore from "../store/store";
 
 const LoginPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const setToken = useTokenStore((state) => state.setToken);
 
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
-      navigate("/dashboard/home");
       console.log("login successfully", data);
+      setToken(data?.accessToken);
+      navigate("/dashboard/home");
     },
     onError: (error: AxiosError<{ message: string }>) => {
       if (error.response) {
