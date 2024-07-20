@@ -14,19 +14,21 @@ import { register } from "../api/api";
 import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
+import useTokenStore from "../store/store";
 
 function Register() {
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const setToken = useTokenStore((state) => state.setToken);
 
   const mutation = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token);
+      setToken(data?.accessToken);
+      // console.log("register successfully", data);
       navigate("/dashboard/home");
-      console.log("login successfully", data);
     },
     onError: (error: AxiosError<{ message: string }>) => {
       if (error.response) {
