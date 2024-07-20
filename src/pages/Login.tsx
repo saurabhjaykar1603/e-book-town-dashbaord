@@ -14,6 +14,9 @@ import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { Loader } from "lucide-react";
+import { cn } from "../lib/utils";
+import { AxiosError } from "axios";
 
 const LoginPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -26,6 +29,13 @@ const LoginPage = () => {
       localStorage.setItem("token", data.token);
       navigate("/dashboard/home");
       console.log("login successfully", data);
+    },
+    onError: (error: AxiosError<{ message: string }>) => {
+      if (error.response) {
+        // console.log("login failed", error.response.data.message);
+      } else {
+        // console.log("login failed", error.message);
+      }
     },
   });
 
@@ -48,7 +58,12 @@ const LoginPage = () => {
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account.
+            Enter your email below to login to your account. <br />
+            {mutation.isError && (
+              <span className="text-red-500 mt-2">
+                {mutation.error?.response?.data?.message}
+              </span>
+            )}
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -69,8 +84,18 @@ const LoginPage = () => {
         </CardContent>
         <CardFooter>
           <div className="flex justify-center flex-col items-center w-full">
-            <Button onClick={handleLoginSubmit} className="w-full">
-              Sign In
+            <Button
+              onClick={handleLoginSubmit}
+              className="w-full"
+              disabled={mutation.isPending}
+            >
+              {mutation.isPending ? (
+                <Loader
+                  className={cn(mutation.isPending ? "animate-spin" : "")}
+                />
+              ) : (
+                <span> Sign In</span>
+              )}
             </Button>
             <div className="mt-4 text-center text-sm">
               Dont have an account?{" "}
