@@ -11,16 +11,32 @@ import {
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { useRef } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { login } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.token);
+      navigate("/dashboard/home");
+      console.log("login successfully", data);
+    },
+  });
 
   const handleLoginSubmit = () => {
     if (emailRef.current?.value && passwordRef.current?.value) {
       const email = emailRef.current?.value;
       const password = passwordRef.current?.value;
-      console.log(email, password);
+      mutation.mutate({
+        email,
+        password,
+      });
     } else {
       alert("Please fill all the fields");
     }
@@ -54,7 +70,7 @@ const LoginPage = () => {
         <CardFooter>
           <div className="flex justify-center flex-col items-center w-full">
             <Button onClick={handleLoginSubmit} className="w-full">
-              Sign Up
+              Sign In
             </Button>
             <div className="mt-4 text-center text-sm">
               Dont have an account?{" "}
