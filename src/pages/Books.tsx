@@ -45,7 +45,6 @@ function BooksPage() {
     staleTime: 10000,
   });
 
-  console.log("data", data?.data);
 
   return (
     <div>
@@ -161,7 +160,11 @@ function BooksPage() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem>Edit</DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Link className="w-full" to={`/dashboard/books/update/${book?._id}`}>
+                              Edit
+                            </Link>
+                          </DropdownMenuItem>
                           <DropdownMenuItem>Delete</DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>

@@ -43,3 +43,14 @@ export const createBook = async (data: FormData) => {
   });
   return response.data;
 };
+
+export const updateBook = async (data: FormData, id: string) => {
+  const response = await api.patchForm(`/api/books/${id}`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+};
+
+export const getBook = async (id: string) => api.get(`/api/books/${id}`);
