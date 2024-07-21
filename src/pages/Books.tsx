@@ -36,6 +36,7 @@ import { Button } from "../components/ui/button";
 import { BadgePlus, MoreHorizontal } from "lucide-react";
 import { Book } from "../types/types";
 import { Skeleton } from "../components/ui/skeleton";
+import { Link } from "react-router-dom";
 
 function BooksPage() {
   const { data, isLoading } = useQuery({
@@ -61,9 +62,11 @@ function BooksPage() {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <Button>
-          <BadgePlus size={20} /> <span className="ml-1"> Add Book</span>
-        </Button>
+        <Link to={"/dashboard/books/create"}>
+          <Button>
+            <BadgePlus size={20} /> <span className="ml-1"> Add Book</span>
+          </Button>
+        </Link>
       </div>
 
       <Card className="mt-6">
