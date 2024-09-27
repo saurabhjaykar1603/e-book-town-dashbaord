@@ -2,7 +2,7 @@ import axios from "axios";
 import useTokenStore from "../store/store";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://e-book-town-server-1.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
