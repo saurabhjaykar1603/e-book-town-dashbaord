@@ -1,8 +1,8 @@
-Here’s a `README.md` template you can use to describe your dashboard for managing books via an API. This guide includes an explanation of the tech stack you're using, setup instructions, and usage details:
+
 
 ---
 
-# Book Dashboard
+# E Book Town Dashboard
 
 This dashboard allows you to manage books via API, including functionalities to register/login users, fetch a list of books, create new books, update existing books, and view individual books. The project is built with **Vite**, **Tailwind CSS**, and **ShadCN UI components** for a sleek and modern interface.
 
@@ -154,4 +154,3 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ---
 
-Feel free to customize the README with additional information about your project as needed!
