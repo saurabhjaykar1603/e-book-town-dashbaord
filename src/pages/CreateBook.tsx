@@ -33,6 +33,7 @@ import { Loader } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../components/ui/use-toast";
+import { Helmet } from "react-helmet";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -108,6 +109,10 @@ function CreateBook() {
 
   return (
     <section>
+      <Helmet>
+        <title>Create Book</title>
+        <meta name="description" content="Create Book" />
+      </Helmet>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex items-center justify-between">

@@ -15,6 +15,7 @@ import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import useTokenStore from "../store/store";
+import { Helmet } from "react-helmet";
 
 function Register() {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -59,6 +60,10 @@ function Register() {
   };
   return (
     <section className="flex justify-center items-center h-screen">
+        <Helmet>
+            <title>Register</title>
+            <meta name="description" content="Register" />
+        </Helmet>
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>

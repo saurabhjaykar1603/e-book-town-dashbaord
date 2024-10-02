@@ -26,9 +26,14 @@ import {
   TableHeader,
   TableRow,
 } from "../components/ui/table";
+import { Helmet } from "react-helmet";
 function HomePage() {
   return (
     <>
+      <Helmet>
+        <title>Books | Welcome</title>
+        <meta name="description" content="Books" />
+      </Helmet>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
         <div className="flex min-h-screen w-full flex-col">
           <main className="flex flex-1 flex-col gap-4 md:gap-6">

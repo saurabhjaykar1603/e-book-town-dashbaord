@@ -32,6 +32,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -107,6 +108,10 @@ const UpdateBook = () => {
 
   return (
     <section>
+        <Helmet>
+            <title>Update Book</title>
+            <meta name="description" content="Update Book" />
+        </Helmet>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex items-center justify-between">

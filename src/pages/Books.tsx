@@ -37,7 +37,7 @@ import { BadgePlus, MoreHorizontal } from "lucide-react";
 import { Book } from "../types/types";
 import { Skeleton } from "../components/ui/skeleton";
 import { Link } from "react-router-dom";
-
+import {Helmet} from "react-helmet";
 function BooksPage() {
   const { data, isLoading } = useQuery({
     queryKey: ["books"],
@@ -47,7 +47,11 @@ function BooksPage() {
 
 
   return (
-    <div>
+    <>
+      <Helmet>
+            <title>Books</title>
+            <meta name="description" content="Books" />
+        </Helmet>
       <div className="flex items-center justify-between">
         <Breadcrumb>
           <BreadcrumbList>
@@ -182,7 +186,7 @@ function BooksPage() {
           </div>
         </CardFooter>
       </Card>
-    </div>
+    </>
   );
 }
 

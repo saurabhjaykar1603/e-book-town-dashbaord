@@ -18,6 +18,7 @@ import { Loader } from "lucide-react";
 import { cn } from "../lib/utils";
 import { AxiosError } from "axios";
 import useTokenStore from "../store/store";
+import { Helmet } from "react-helmet";
 
 const LoginPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -56,6 +57,10 @@ const LoginPage = () => {
 
   return (
     <section className="flex h-screen justify-center items-center">
+        <Helmet>
+            <title>Login</title>
+            <meta name="description" content="Login" />
+        </Helmet>
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
